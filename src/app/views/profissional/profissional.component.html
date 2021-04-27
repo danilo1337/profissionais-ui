@@ -1,0 +1,63 @@
+<p-tabView>
+    <p-tabPanel header="Cadastro Profissional">
+
+        <form [formGroup]="projectForm">
+
+            <div class="p-fluid p-formgrid p-grid">
+
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="nome">Nome</label>
+                    <input id="nome" formControlName="nome" type="text" pInputText>
+                </div>
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="sobrenome">Sobrenome</label>
+                    <input id="sobrenome" formControlName="sobrenome" type="text" pInputText>
+                </div>
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="cpf">CPF</label>
+                    <input id="cpf" formControlName="cpf" type="text" pInputText>
+                </div>
+            </div>
+            <h5>Endereco</h5>
+            <div class="p-fluid p-formgrid p-grid">
+
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="logradouro">Logradouro</label>
+                    <input id="logradouro" formControlName="logradouro" type="text" pInputText>
+                </div>
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="numero">Número</label>
+                    <input id="numero" formControlName="numero" type="text" pInputText>
+                </div>
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="cidade">Cidade</label>
+                    <input id="cidade" formControlName="cidade" type="text" pInputText>
+                </div>
+
+                <div class="p-field p-col-3 p-md-3">
+                    <label for="estado">Estado</label>
+                    <p-dropdown formControlName="estado" id="selectedEstado" [options]="estados"
+                        [(ngModel)]="selectedEstado" optionLabel="nome"></p-dropdown>
+                </div>
+            </div>
+            <h5>Telefone</h5>
+            <div class="p-fluid p-formgrid p-grid">
+
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="ddd">DDD</label>
+                    <input id="ddd" formControlName="ddd" type="ddd" pInputText>
+                </div>
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="numeroTelefone">Telefone</label>
+                    <input id="numeroTelefone" formControlName="numeroTelefone" type="text" pInputText>
+                </div>
+            </div>
+            <br>
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field p-col-12 p-md-12">
+                    <button pButton type="button" label="Salvar" (click)="handleClick()"></button>
+                </div>
+            </div>
+        </form>
+    </p-tabPanel>
+</p-tabView>

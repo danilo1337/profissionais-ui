@@ -1,0 +1,99 @@
+<app-menu></app-menu>
+<p-toolbar styleClass="p-mb-4">
+    <div class="p-toolbar-group-left"></div>
+    <div class="p-toolbar-group-right">
+        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+            (click)="openNew()"></button>
+    </div>
+
+</p-toolbar>
+<div class="card">
+    <p-table [value]="profissionais" [lazy]="true" (onLazyLoad)="loadProfinais($event)" [paginator]="true"
+        [rows]="10" [totalRecords]="totalRecords" [loading]="loading">
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th>CPF</th>
+                <th>Nome</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-profissional>
+            <tr>
+                <td>{{profissional.cpf}}</td>
+                <td>{{profissional.nome}} {{profissional.sobrenome}}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+                        (click)="editProfissional(profissional)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProfissional(profissional)"> </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<!--Dialog-->>
+<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Cadastro Profissional" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+        <div class="p-field">
+            <label for="cpf">CPF</label>
+            <input type="text" pInputText id="cpf" [(ngModel)]="profissional.cpf" required autofocus />
+            <small class="p-error" *ngIf="submitted && !profissional.cpf">O campo cpf é obrigatório.</small>
+        </div>
+
+        <div class="p-field">
+            <label for="nome">Nome</label>
+            <input type="text" pInputText id="nome" [(ngModel)]="profissional.nome" required autofocus />
+            <small class="p-error" *ngIf="submitted && !profissional.nome">O campo nome é obrigatório.</small>
+        </div>
+
+        <div class="p-field">
+            <label for="sobrenome">Sobrenome</label>
+            <input type="text" pInputText id="sobrenome" [(ngModel)]="profissional.sobrenome" required autofocus />
+            <small class="p-error" *ngIf="submitted && !profissional.sobrenome">O campo sobrenome é obrigatório.</small>
+        </div>
+
+        <h5 class="p-m-0">Endereço</h5>
+
+        <div class="p-field">
+            <label for="logradouro">Sobrenome</label>
+            <input type="text" pInputText id="logradouro" [(ngModel)]="profissional.endereco.logradouro" required autofocus />
+            <small class="p-error" *ngIf="submitted && !profissional.endereco.logradouro">O campo sobrenome é obrigatório.</small>
+        </div>
+
+        <div class="p-field">
+            <label for="numero">Número</label>
+            <input type="text" pInputText id="numero" [(ngModel)]="profissional.endereco.numero" required autofocus />
+        </div>
+
+        <div class="p-field">
+            <label for="cidade">Cidade</label>
+            <input type="text" pInputText id="cidade" [(ngModel)]="profissional.endereco.cidade" required autofocus />
+            <small class="p-error" *ngIf="submitted && !profissional.endereco.cidade">O campo cidade é obrigatório.</small>
+        </div>
+
+        <div class="p-field">
+            <label for="estado">Estado</label>
+            <p-dropdown id="selectedEstado" [options]="estados" [(ngModel)]="selectedEstado" optionLabel="nome">
+            </p-dropdown>
+        </div>
+
+        <div class="p-field">
+            <label for="ddd">DDD</label>
+            <input type="text" pInputText id="ddd" [(ngModel)]="telefone.id.ddd" required autofocus />
+            <small class="p-error" *ngIf="submitted && ! telefone.id.ddd">O campo DDD é obrigatório.</small>
+        </div>
+
+        <div class="p-field">
+            <label for="telefone">Número</label>
+            <input type="text" pInputText id="telefone" [(ngModel)]="telefone.id.numero" required autofocus />
+            <small class="p-error" *ngIf="submitted && ! telefone.id.numero">O campo telefone é obrigatório.</small>
+        </div>
+
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProfissional()"></button>
+    </ng-template>
+</p-dialog>

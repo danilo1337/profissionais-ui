@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
+import {LazyLoadEvent} from 'primeng/api';
 import { Profissao } from 'src/app/shared/model/profissao.model';
-import { ProfissionaisService } from 'src/app/shared/service/profissionais.service';
+import { ProfissoesService } from 'src/app/shared/service/profissoes.service';
+
 
 @Component({
   selector: 'app-profissao-list',
@@ -23,7 +24,7 @@ export class ProfissaoListComponent implements OnInit {
 
 
   constructor(
-    public service: ProfissionaisService
+    public service: ProfissoesService
   ) { }
 
   ngOnInit(): void {
@@ -65,7 +66,6 @@ export class ProfissaoListComponent implements OnInit {
       if (this.profissao.id) {
         //put
         this.service.putProfissao(this.profissao).subscribe(result => { });
-        
         setTimeout(() => {this.getProfissao();}, 1000);
       }
       else {
